@@ -1,5 +1,6 @@
-const chalk = require('chalk')
+
 const util = require('util')
+const chalk = require("chalk");
 const dfn = require('date-format')
 const cli = require('cli-progress')
 

@@ -1,5 +1,4 @@
 const debuger = require('../index')
-const axios = require('axios')
 
 const test = async () => {
   logger = debuger('test')
@@ -10,12 +9,12 @@ const test = async () => {
   logger.error(new Error('error message.'))
 
   try {
-    await axios.get('http://exception-request.com/')
+    throw new Error('Error')
   } catch (ex) {
     logger.error(ex)
   }
   try {
-    await axios.post('https://google.co.th/')
+    throw new Error('Error')
   } catch (ex) {
     logger.error(ex)
   }
