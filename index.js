@@ -1,6 +1,6 @@
 const chalk = require('chalk')
 const util = require('util')
-const f = require('date-format')
+const dfn = require('date-format')
 const cli = require('cli-progress')
 
 const isWin = process.platform !== 'win32'
@@ -15,7 +15,7 @@ const groupPadding = (msg, size, pad) => {
 
 module.exports = (scopeName = null) => {
   const logWindows = (scope, icon, status, color, msg) => {
-    let msg2 = [ chalk.gray(f.asString(formatDate, new Date())), color(icon) ]
+    let msg2 = [ chalk.gray(dfn.asString(formatDate, new Date())), color(icon) ]
     msg2.push(color(groupPadding(status, groupSize, 'padStart')))
     if (scope) {
       if (scope.length > scopeSize) scopeSize = scope.length
@@ -33,7 +33,7 @@ module.exports = (scopeName = null) => {
   }
 
   const logLinux = (scope, icon, status, msg) => {
-    let msg2 = [ f.asString(formatDate, new Date()), (!icon ? '…' : icon) ]
+    let msg2 = [ dfn.asString(formatDate, new Date()), (!icon ? '…' : icon) ]
     if (scope) msg2.push(`[${scope.toUpperCase()}]`)
 
     if (typeof msg !== 'object') msg = [ msg ]
@@ -58,7 +58,7 @@ module.exports = (scopeName = null) => {
     wait (msg = 'downloading', max = 100, barSize = 25) {
       let msg2 = []
       if (isWin) {
-        msg2 = [ chalk.gray(f.asString(formatDate, new Date())), chalk.magentaBright('▫'), chalk.magentaBright(groupPadding('wait', groupSize, 'padStart')) ]
+        msg2 = [ chalk.gray(dfn.asString(formatDate, new Date())), chalk.magentaBright('▫'), chalk.magentaBright(groupPadding('wait', groupSize, 'padStart')) ]
   
         if (scopeName) {
           if (scopeName.length > scopeSize) scopeSize = scopeName.length
